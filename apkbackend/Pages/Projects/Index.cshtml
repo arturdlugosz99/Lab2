@@ -1,0 +1,62 @@
+﻿@page
+@model apkbackend.Pages.Projects.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create" class="btn btn-success">Create New</a>
+</p>
+
+<form>
+    <p>
+        Project: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Search" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Project[0].Nazwa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Project[0].Data_zgloszenia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Project[0].status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Project[0].Opiekun)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Project) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nazwa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data_zgloszenia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.status)
+            </td>
+                 <td>
+                    @Html.DisplayFor(modelItem => item.Opiekun)
+                </td>
+            <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id" class=" btn btn-warning">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-info">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
